@@ -16,7 +16,8 @@ export class Board extends React.Component {
         this.state = {
             boxesPerRow: props.boxesPerRow,
             boxValues: boxValues,
-            status: props.status
+            status: props.status,
+            maxDepth: props.boxesPerRow
         }
     }
 
@@ -44,19 +45,19 @@ export class Board extends React.Component {
                 this.matchSquaresFillStateTillDepthInDirection({
                     x: column,
                     y: row
-                }, this.props.currentPlayer.symbol, 0, 2, Directions.BOTTOM) ||
+                }, this.props.currentPlayer.symbol, 1, this.state.maxDepth, Directions.BOTTOM) ||
                 this.matchSquaresFillStateTillDepthInDirection({
                     x: column,
                     y: row
-                }, this.props.currentPlayer.symbol, 0, 2, Directions.RIGHT) ||
+                }, this.props.currentPlayer.symbol, 1, this.state.maxDepth, Directions.RIGHT) ||
                 this.matchSquaresFillStateTillDepthInDirection({
                     x: column,
                     y: row
-                }, this.props.currentPlayer.symbol, 0, 2, Directions.DIAGONAL_DOWN) ||
+                }, this.props.currentPlayer.symbol, 1, this.state.maxDepth, Directions.DIAGONAL_DOWN) ||
                 this.matchSquaresFillStateTillDepthInDirection({
                     x: column,
                     y: row
-                }, this.props.currentPlayer.symbol, 0, 2, Directions.DIAGONAL_UP)) {
+                }, this.props.currentPlayer.symbol, 1, this.state.maxDepth, Directions.DIAGONAL_UP)) {
                     return BoardStates.DECIDED
                 }
             }
